@@ -39,7 +39,8 @@ about auto farm 1st fast & function So now just have BIG PROJECT 1st is Only BLO
 *   🌍  I'm based in Bangkok, Thailand
 *   ✉️  You can contact me at [contactxzpuhighforwork@gmail.com](mailto:contactxzpuhighforwork@gmail.com)
 *   🚀  I'm currently working on [Youtube](http://www.youtube.com/@xZPUHigh)
-*   🧠  I'm learning Lua, Python, HTML, PHP, Javacript & Typescript, CSS<a href="https://www.github.com/xZPUHigh" target="_blank" rel="noreferrer"><img
+*   🧠  I'm learning Lua, Python, HTML, PHP, Javacript & Typescript, CSS
+*   <a href="https://www.github.com/xZPUHigh" target="_blank" rel="noreferrer"><img
                   src="https://img.shields.io/github/followers/xZPUHigh?logo=github&style=for-the-badge&color=0891b2&labelColor=1c1917" /></a><a href="https://www.x.com/xzpuhighreal" target="_blank" rel="noreferrer"><img
                   src="https://img.shields.io/twitter/follow/xzpuhighreal?logo=twitter&style=for-the-badge&color=0891b2&labelColor=1c1917"
                 
