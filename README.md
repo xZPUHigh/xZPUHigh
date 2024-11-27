@@ -5,7 +5,7 @@ Join with us 🌎 : https://discord.gg/hackerclub
 ----------------------------------------
 
 💯 I'm student from Bangkok University of Business Administration And Marketing about Digital Marketing 💰 
-💊And yes I'm youtuber this is my channel @xZPUHigh (30K SUB RIGHT NOW)👑 
+💊And yes I'm youtuber this is my channel @xZPUHigh (40K SUB RIGHT NOW)👑 
 
 🌐If you want contact some project or suggestion. You can click on this here 
 ✅ LINK : https://linktr.ee/xzpuhigh 
