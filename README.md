@@ -1,7 +1,7 @@
 Hi ![](https://user-images.githubusercontent.com/18350557/176309783-0785949b-9127-417c-8b55-ab5a4333674e.gif)My name is </ xZPUHigh {ZPU} >
 ===========================================================================================================================================
 
-Join with us 🌎 : https://discord.gg/zpu
+Join with us 🌎 : https://discord.gg/hackerclub
 ----------------------------------------
 
 💯 I'm student from Bangkok University of Business Administration And Marketing about Digital Marketing 💰 
