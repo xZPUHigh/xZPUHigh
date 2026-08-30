@@ -1,15 +1,15 @@
-﻿<div align="center">
+<div align="center">
 
   <!-- Hero Banner -->
   <a href="https://zpu.lol">
-    <img src="https://raw.githubusercontent.com/xZPUHigh/xZPUHigh/main/benner_1.png" width="100%" alt="ZPU Banner" style="border-radius: 14px;" />
+    <img src="https://raw.githubusercontent.com/xZPUHigh/xZPUHigh/main/benner_1.png" width="100%" alt="ZPU Banner" style="border-radius: 12px;" />
   </a>
 
   <br/><br/>
 
   <!-- Dynamic Typing Title -->
   <a href="https://zpu.lol">
-    <img src="https://readme-typing-svg.demolab.com?font=Syne&weight=700&size=28&duration=3000&pause=1000&color=A855F7&center=true&vCenter=true&repeat=true&width=600&height=50&lines=ZPU+-+xZPUHigh;Founder+%26+Lead+Architect;Building+Digital+Empires;Next.js+*+TypeScript+*+Lua" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Syne&weight=700&size=26&duration=3000&pause=1000&color=A855F7&center=true&vCenter=true&repeat=true&width=550&height=45&lines=ZPU+%E2%80%94+xZPUHigh;Founder+%26+Lead+Architect;Building+Digital+Platforms;Next.js+%E2%80%A2+TypeScript+%E2%80%A2+Lua" alt="Typing SVG" />
   </a>
 
   <p align="center">
@@ -28,44 +28,41 @@
 
 ---
 
-### &#9889; Terminal Profile: zpu@matrix:~$ whoami
+### ⚡ Quick Profile
 
-`yaml
-Name:        ZPU (xZPUHigh) / Chanon
-Status:      Building & Scaling Next-Gen Platforms
-Base:        Bangkok & Chiang Mai, Thailand
-Mindset:     "I don't play to play. I play to win."
-Core Craft:  Reverse Engineering - Full-Stack Architecture - Automation Systems
-Now Playing: Drake - Make Them Pay (Iceman)
-Website:     https://zpu.lol
-`
+- 👤 **Name:** ZPU (xZPUHigh) / Chanon
+- 📍 **Location:** Bangkok & Chiang Mai, Thailand
+- 💡 **Mindset:** *"I do not play to play. I play to win."*
+- 🛠️ **Craft:** Reverse Engineering &bull; Full-Stack Architecture &bull; Automation Systems
+- 🎵 **Now Playing:** Drake — Make Them Pay (Iceman)
+- 🌐 **Portfolio:** [zpu.lol](https://zpu.lol)
 
 ---
 
-### &#128736; Tech Stack & Arsenal
+### 🛠️ Tech Stack & Skills
 
 <table align="center" width="100%">
   <tr>
     <td width="50%" valign="top">
-      <h4>Languages & Core</h4>
+      <h4>💻 Languages</h4>
       <p>
         <img src="https://skillicons.dev/icons?i=ts,js,lua,python,html,css" />
       </p>
       <ul>
-        <li><b>Lua:</b> 5+ Years of Deep Scripting, Game Automation & Exploit Engineering</li>
-        <li><b>TypeScript / JS:</b> High-performance Web Applications & Type-safe APIs</li>
-        <li><b>Python:</b> Server Automation, Discord Bots & Data Processing</li>
+        <li><b>Lua:</b> 5+ Years of Deep Scripting & Game Automation</li>
+        <li><b>TypeScript / JS:</b> High-performance Web Applications</li>
+        <li><b>Python:</b> Server Automation & Bots</li>
       </ul>
     </td>
     <td width="50%" valign="top">
-      <h4>Frameworks & Cloud Infrastructure</h4>
+      <h4>🌐 Frameworks & Infrastructure</h4>
       <p>
         <img src="https://skillicons.dev/icons?i=nextjs,react,tailwind,postgres,supabase,cloudflare,vercel,git" />
       </p>
       <ul>
-        <li><b>Frontend:</b> Next.js 16 (App Router + Turbopack), React 19, Tailwind CSS 4</li>
-        <li><b>Backend & Data:</b> PostgreSQL, Supabase, REST Route Handlers, NextAuth</li>
-        <li><b>Edge & Cloud:</b> Cloudflare DNS / Workers, Vercel Global Edge Network</li>
+        <li><b>Frontend:</b> Next.js 16 (Turbopack), React 19, Tailwind CSS 4</li>
+        <li><b>Backend & Data:</b> PostgreSQL, Supabase, Route Handlers</li>
+        <li><b>Edge & Cloud:</b> Cloudflare, Vercel Global Network</li>
       </ul>
     </td>
   </tr>
@@ -73,34 +70,34 @@ Website:     https://zpu.lol
 
 ---
 
-### &#128640; Timeline of Ecosystem & Works (2021 &mdash; Present)
+### 🚀 Timeline & Key Projects (2021 — Present)
 
-`
-2021  ---  ZPU Hub (Mad City, Blox Fruits) -- Original script suites
-2022  ---  CPU FARM & Authentication Systems -- Key & Gate infrastructure
-2024  ---  Script Bloxy & Project Spectrum Expansion
-2025  ---  Spectrum Store & Blox Cheat Architecture
-2026  ---  Spectrum Cheat (Next.js 16) + zpu.lol Standalone Brand
-`
+- **2021** ➔ **ZPU Hub** (Mad City, Blox Fruits) — Original game script suites
+- **2022** ➔ **CPU FARM & Authentication Systems** — Key & security token infrastructure
+- **2024** ➔ **Script Bloxy** & Project Spectrum Ecosystem Expansion
+- **2025** ➔ **Spectrum Store** & Blox Cheat Platform
+- **2026** ➔ **Spectrum Cheat** (Next.js 16) + **[zpu.lol](https://zpu.lol)** Personal Brand
 
-| Project | Role / Stack | Status / Link |
+<br/>
+
+| Project | Description / Stack | Link |
 | :--- | :--- | :--- |
-| **zpu.lol** | Creator Portfolio - Music Player - Collections | [Live Demo](https://zpu.lol) |
-| **Spectrum Cheat** | Official Script Hub - Key Gate - Status Board | [spectrumcheat.com](https://spectrumcheat.com) |
-| **Spectrum Store** | E-Commerce - Digital Topup System | [Store](https://spectrumcheat.rexzy.xyz) |
-| **Auth Security Suite** | Multi-tier Dynamic Verification & Token Gate | [View System](https://spectrumcheat.com/getkey) |
+| 🌐 **zpu.lol** | Personal Portfolio &bull; Music Player &bull; Collections | [Visit Site ↗](https://zpu.lol) |
+| ⚡ **Spectrum Cheat** | Official Script Hub &bull; Key System &bull; Live Status | [spectrumcheat.com ↗](https://spectrumcheat.com) |
+| 🛒 **Spectrum Store** | E-Commerce &bull; Digital Store Platform | [Store ↗](https://spectrumcheat.rexzy.xyz) |
+| 🔐 **Auth Security Suite** | Multi-tier Key Verification & Access Gate | [View System ↗](https://spectrumcheat.com/getkey) |
 
 ---
 
-### &#128421; Battlestation & Everyday Carry
+### 🖥️ Battlestation & Daily Gear
 
 <details>
-<summary><b>Click to expand Rig Specs & Hardware</b></summary>
+<summary><b>🔍 Click to view Rig Specs & Hardware</b></summary>
 <br/>
 
-- **Battlestation:** Custom Rig - Dual ROG & TUF Gaming Displays
-- **Peripherals:** Logitech G Pro X Superlight - HyperX Cloud III - QuadCast Mic
-- **Daily Carry:** iPhone 15 Pro - iPad Air + Apple Pencil Pro - AirPods Pro 2 - Goyard & Cartier
+- **🖥️ Battlestation:** Custom Rig &bull; Dual ROG & TUF Gaming Displays
+- **🖱️ Peripherals:** Logitech G Pro X Superlight &bull; HyperX Cloud III &bull; QuadCast Mic
+- **📱 Daily Carry:** iPhone 15 Pro &bull; iPad Air + Apple Pencil Pro &bull; AirPods Pro 2 &bull; Goyard & Cartier
 
 </details>
 
@@ -108,19 +105,14 @@ Website:     https://zpu.lol
 
 <div align="center">
 
-  ### &#128202; Real-Time Matrix Stats
+  ### 📊 GitHub Activity & Streak
 
   <p align="center">
-    <img src="https://github-readme-stats.vercel.app/api?username=xZPUHigh&show_icons=true&theme=tokyonight&hide_border=true&bg_color=04060e&title_color=a855f7&icon_color=06b6d4&text_color=94a3b8&border_radius=12" alt="GitHub Stats" />
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=xZPUHigh&layout=compact&theme=tokyonight&hide_border=true&bg_color=04060e&title_color=a855f7&text_color=94a3b8&border_radius=12" alt="Top Languages" />
+    <img src="https://github-readme-streak-stats.herokuapp.com/?user=xZPUHigh&theme=tokyonight&hide_border=true&background=04060e&stroke=8b5cf6&ring=a855f7&fire=06b6d4&currStreakNum=ffffff&sideNums=94a3b8&currStreakLabel=a855f7&sideLabels=94a3b8" alt="GitHub Streak" />
   </p>
 
   <br/>
 
-  <a href="https://zpu.lol">
-    <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=1,13,22&height=100&section=footer" width="100%"/>
-  </a>
-
-  <sub>Designed for <b><a href="https://zpu.lol">zpu.lol</a></b> &bull; Crafted with Precision & Passion</sub>
+  <sub>⚡ Powered by <b><a href="https://zpu.lol">zpu.lol</a></b> &bull; Crafted with Precision & Passion</sub>
 
 </div>
