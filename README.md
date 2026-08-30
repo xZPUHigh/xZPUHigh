@@ -1,19 +1,19 @@
-<div align="center">
+﻿<div align="center">
 
   <!-- Hero Banner -->
   <a href="https://zpu.lol">
-    <img src="https://raw.githubusercontent.com/xZPUHigh/xZPUHigh/main/benner_1.png" width="100%" alt="ZPU Banner" style="border-radius: 14px; box-shadow: 0 20px 50px rgba(139, 92, 246, 0.25);" />
+    <img src="https://raw.githubusercontent.com/xZPUHigh/xZPUHigh/main/benner_1.png" width="100%" alt="ZPU Banner" style="border-radius: 14px;" />
   </a>
 
   <br/><br/>
 
   <!-- Dynamic Typing Title -->
   <a href="https://zpu.lol">
-    <img src="https://readme-typing-svg.demolab.com?font=Syne&weight=700&size=28&duration=3000&pause=1000&color=A855F7&center=true&vCenter=true&repeat=true&width=600&height=50&lines=ZPU+%E2%80%94+xZPUHigh;Founder+%26+Lead+Architect;Building+Digital+Empires;Next.js+%E2%80%A2+TypeScript+%E2%80%A2+Lua" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Syne&weight=700&size=28&duration=3000&pause=1000&color=A855F7&center=true&vCenter=true&repeat=true&width=600&height=50&lines=ZPU+-+xZPUHigh;Founder+%26+Lead+Architect;Building+Digital+Empires;Next.js+*+TypeScript+*+Lua" alt="Typing SVG" />
   </a>
 
   <p align="center">
-    <b>Founder of Spectrum Ecosystem โ€ข Full-Stack Developer โ€ข Digital Creator</b>
+    <b>Founder of Spectrum Ecosystem &bull; Full-Stack Developer &bull; Digital Creator</b>
   </p>
 
   <p align="center">
@@ -28,26 +28,26 @@
 
 ---
 
-### โก Terminal Profile: `zpu@matrix:~$ whoami`
+### &#9889; Terminal Profile: zpu@matrix:~$ whoami
 
-```yaml
+`yaml
 Name:        ZPU (xZPUHigh) / Chanon
 Status:      Building & Scaling Next-Gen Platforms
-Base:        Thailand ๐น๐ญ
+Base:        Bangkok & Chiang Mai, Thailand
 Mindset:     "I don't play to play. I play to win."
-Core Craft:  Reverse Engineering โ€ข Full-Stack Web Architecture โ€ข Automation Systems
-Now Playing: ๐ต Drake โ€” Make Them Pay (Iceman)
+Core Craft:  Reverse Engineering - Full-Stack Architecture - Automation Systems
+Now Playing: Drake - Make Them Pay (Iceman)
 Website:     https://zpu.lol
-```
+`
 
 ---
 
-### ๐ ๏ธ Tech Stack & Arsenal
+### &#128736; Tech Stack & Arsenal
 
 <table align="center" width="100%">
   <tr>
     <td width="50%" valign="top">
-      <h4>๐’ป Languages & Core</h4>
+      <h4>Languages & Core</h4>
       <p>
         <img src="https://skillicons.dev/icons?i=ts,js,lua,python,html,css" />
       </p>
@@ -58,7 +58,7 @@ Website:     https://zpu.lol
       </ul>
     </td>
     <td width="50%" valign="top">
-      <h4>๐ Frameworks & Cloud Infrastructure</h4>
+      <h4>Frameworks & Cloud Infrastructure</h4>
       <p>
         <img src="https://skillicons.dev/icons?i=nextjs,react,tailwind,postgres,supabase,cloudflare,vercel,git" />
       </p>
@@ -73,34 +73,34 @@ Website:     https://zpu.lol
 
 ---
 
-### ๐€ Timeline of Ecosystem & Works (2021 โ€” Present)
+### &#128640; Timeline of Ecosystem & Works (2021 &mdash; Present)
 
-```
-2021  โ”€โ”€โ”€  ZPU Hub (Mad City, Blox Fruits) โ”€โ”€ Original script suites
-2022  โ”€โ”€โ”€  CPU FARM & Authentication Systems โ”€โ”€ Key & Gate infrastructure
-2024  โ”€โ”€โ”€  Script Bloxy & Project Spectrum Expansion
-2025  โ”€โ”€โ”€  Spectrum Store & Blox Cheat Architecture
-2026  โ”€โ”€โ”€  Spectrum Cheat (Next.js 16) + zpu.lol Standalone Brand
-```
+`
+2021  ---  ZPU Hub (Mad City, Blox Fruits) -- Original script suites
+2022  ---  CPU FARM & Authentication Systems -- Key & Gate infrastructure
+2024  ---  Script Bloxy & Project Spectrum Expansion
+2025  ---  Spectrum Store & Blox Cheat Architecture
+2026  ---  Spectrum Cheat (Next.js 16) + zpu.lol Standalone Brand
+`
 
 | Project | Role / Stack | Status / Link |
 | :--- | :--- | :--- |
-| ๐ **zpu.lol** | Creator Portfolio โ€ข Music Player โ€ข Collections | [Live Demo โ—](https://zpu.lol) |
-| โก **Spectrum Cheat** | Official Script Hub โ€ข Key Gate โ€ข Status Board | [spectrumcheat.com โ—](https://spectrumcheat.com) |
-| ๐’ **Spectrum Store** | E-Commerce โ€ข Digital Topup System | [Store โ—](https://spectrumcheat.rexzy.xyz) |
-| ๐” **Auth Security Suite** | Multi-tier Dynamic Verification & Token Gate | [View System โ—](https://spectrumcheat.com/getkey) |
+| **zpu.lol** | Creator Portfolio - Music Player - Collections | [Live Demo](https://zpu.lol) |
+| **Spectrum Cheat** | Official Script Hub - Key Gate - Status Board | [spectrumcheat.com](https://spectrumcheat.com) |
+| **Spectrum Store** | E-Commerce - Digital Topup System | [Store](https://spectrumcheat.rexzy.xyz) |
+| **Auth Security Suite** | Multi-tier Dynamic Verification & Token Gate | [View System](https://spectrumcheat.com/getkey) |
 
 ---
 
-### ๐–ฅ๏ธ Battlestation & Everyday Carry
+### &#128421; Battlestation & Everyday Carry
 
 <details>
-<summary><b>๐” Click to expand Rig Specs & Hardware</b></summary>
+<summary><b>Click to expand Rig Specs & Hardware</b></summary>
 <br/>
 
-- **๐–ฅ๏ธ Battlestation:** Custom Rig โ€ข Dual ROG & TUF Gaming Displays
-- **๐–ฑ๏ธ Peripherals:** Logitech G Pro X Superlight โ€ข HyperX Cloud III โ€ข QuadCast Mic
-- **๐“ฑ Daily Carry:** iPhone 15 Pro โ€ข iPad Air + Apple Pencil Pro โ€ข AirPods Pro 2 โ€ข Goyard & Cartier
+- **Battlestation:** Custom Rig - Dual ROG & TUF Gaming Displays
+- **Peripherals:** Logitech G Pro X Superlight - HyperX Cloud III - QuadCast Mic
+- **Daily Carry:** iPhone 15 Pro - iPad Air + Apple Pencil Pro - AirPods Pro 2 - Goyard & Cartier
 
 </details>
 
@@ -108,7 +108,7 @@ Website:     https://zpu.lol
 
 <div align="center">
 
-  ### ๐“ Real-Time Matrix Stats
+  ### &#128202; Real-Time Matrix Stats
 
   <p align="center">
     <img src="https://github-readme-stats.vercel.app/api?username=xZPUHigh&show_icons=true&theme=tokyonight&hide_border=true&bg_color=04060e&title_color=a855f7&icon_color=06b6d4&text_color=94a3b8&border_radius=12" alt="GitHub Stats" />
@@ -121,7 +121,6 @@ Website:     https://zpu.lol
     <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=1,13,22&height=100&section=footer" width="100%"/>
   </a>
 
-  <sub>Designed for <b><a href="https://zpu.lol">zpu.lol</a></b> โ€ข Crafted with Precision & Passion</sub>
+  <sub>Designed for <b><a href="https://zpu.lol">zpu.lol</a></b> &bull; Crafted with Precision & Passion</sub>
 
 </div>
-
