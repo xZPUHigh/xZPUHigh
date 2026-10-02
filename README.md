@@ -17,16 +17,6 @@
 
 <br />
 
-## About
-
-My name is **Chanon**, or **ZPU** (said like CPU). I started at eight, on a phone I bought myself with almost a year of saved lunch money, and on **9 April 2017** I opened my first YouTube channel along with the first dream I ever had: a hundred thousand subscribers
-
-Everything after that was self taught, one thing at a time. Content first, then selling and taking jobs inside games, and in **2021** writing code: I founded a community of my own, learned **Lua and Luau** from English documentation and other people's source, and built **ZPU HUB**, which grew into **Spectrum** in 2024
-
-Today I am 17 and still one person behind all of it. I write the scripts, build the sites, cut the videos and answer the questions
-
-<br />
-
 ## In numbers
 
 <picture>
