@@ -19,58 +19,11 @@
 
 <br />
 
-## Stack
-
-<table>
-  <tr>
-    <td width="160"><b>Languages</b></td>
-    <td>
-      <picture>
-        <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=ts,js,lua,py,cs,cpp,go,rust,php,bash,html,css&theme=light&perline=12" />
-        <img src="https://skillicons.dev/icons?i=ts,js,lua,py,cs,cpp,go,rust,php,bash,html,css&theme=dark&perline=12" height="40" alt="TypeScript, JavaScript, Lua, Python, C#, C++, Go, Rust, PHP, Bash, HTML, CSS" />
-      </picture>
-    </td>
-  </tr>
-  <tr>
-    <td><b>Frontend</b></td>
-    <td>
-      <picture>
-        <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=react,nextjs,svelte,tailwind&theme=light" />
-        <img src="https://skillicons.dev/icons?i=react,nextjs,svelte,tailwind&theme=dark" height="40" alt="React, Next.js, Svelte, Tailwind CSS" />
-      </picture>
-    </td>
-  </tr>
-  <tr>
-    <td><b>Backend and data</b></td>
-    <td>
-      <picture>
-        <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=nodejs,bun,deno,express,supabase,postgres,mysql,mongodb,redis,sqlite&theme=light" />
-        <img src="https://skillicons.dev/icons?i=nodejs,bun,deno,express,supabase,postgres,mysql,mongodb,redis,sqlite&theme=dark" height="40" alt="Node.js, Bun, Deno, Express, Supabase, PostgreSQL, MySQL, MongoDB, Redis, SQLite" />
-      </picture>
-    </td>
-  </tr>
-  <tr>
-    <td><b>Infrastructure</b></td>
-    <td>
-      <picture>
-        <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=cloudflare,vercel,docker,ubuntu,git,github,vscode&theme=light" />
-        <img src="https://skillicons.dev/icons?i=cloudflare,vercel,docker,ubuntu,git,github,vscode&theme=dark" height="40" alt="Cloudflare, Vercel, Docker, Ubuntu, Git, GitHub, VS Code" />
-      </picture>
-    </td>
-  </tr>
-  <tr>
-    <td><b>Reverse engineering</b></td>
-    <td>Ghidra · radare2 · Frida · x64dbg · GDB · Wireshark · Burp Suite · Metasploit</td>
-  </tr>
-  <tr>
-    <td><b>Creative</b></td>
-    <td>Photoshop · Premiere Pro · DaVinci Resolve · VEGAS Pro · CapCut · Canva · ibisPaint</td>
-  </tr>
-  <tr>
-    <td><b>Spoken</b></td>
-    <td>Thai and English, with some Chinese, Vietnamese, Spanish and Japanese</td>
-  </tr>
-</table>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/stack-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="assets/stack-light.svg" />
+  <img src="assets/stack-dark.svg" width="100%" alt="Stack. Languages: TypeScript, JavaScript, Lua, Python, C#, C++, Go, Rust, PHP, Bash, HTML, CSS. Frontend: React, Next.js, Svelte, Tailwind CSS. Infrastructure: Cloudflare, Vercel, Docker, Ubuntu, Git, GitHub, VS Code. Backend and data: Node.js, Bun, Deno, Express, Supabase, PostgreSQL, MySQL, MongoDB, Redis, SQLite. Reverse engineering: Ghidra, radare2, Frida, x64dbg, GDB, Wireshark, Burp Suite, Metasploit. Creative: Photoshop, Premiere Pro, DaVinci Resolve, VEGAS Pro, CapCut, Canva, ibisPaint. Spoken: Thai and English, with some Chinese, Vietnamese, Spanish and Japanese" />
+</picture>
 
 <br />
 

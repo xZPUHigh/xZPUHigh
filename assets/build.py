@@ -309,6 +309,125 @@ def slug(label):
     return label.lower().replace(" ", "-").replace(".", "-")
 
 
+# --- Stack --------------------------------------------------------------------
+
+# Icons are skillicons.dev tiles, cached in icons/skill/ (one per theme) and
+# embedded as data URIs, since an SVG shown through <img> fetches nothing.
+STACK_ICONS = [
+    ("Languages", "ts js lua py cs cpp go rust php bash html css", True),
+    ("Frontend", "react nextjs svelte tailwind", False),
+    ("Infrastructure", "cloudflare vercel docker ubuntu git github vscode", False),
+    ("Backend and data", "nodejs bun deno express supabase postgres mysql mongodb redis sqlite", True),
+]
+
+# Words with no tile. A flag of True marks a chip drawn in the accent tint.
+STACK_WORDS = [
+    ("Reverse engineering", [(w, False) for w in
+                             ("Ghidra", "radare2", "Frida", "x64dbg", "GDB", "Wireshark", "Burp Suite", "Metasploit")]),
+    ("Creative", [(w, False) for w in
+                  ("Photoshop", "Premiere Pro", "DaVinci Resolve", "VEGAS Pro", "CapCut", "Canva", "ibisPaint")]),
+    ("Spoken", [("Thai", True), ("English", True)] + [(w, False) for w in
+                                                      ("Chinese", "Vietnamese", "Spanish", "Japanese")]),
+]
+
+try:
+    from PIL import ImageFont
+
+    _CHIP = ImageFont.truetype("C:/Windows/Fonts/segoeui.ttf", 14)
+
+    def chip_width(word):
+        return _CHIP.getlength(word)
+except Exception:
+    def chip_width(word):
+        return len(word) * 7.4
+
+
+def skill_icon(name, theme):
+    import re
+
+    svg = (HERE / "icons" / "skill" / f"{name}-{theme}.svg").read_text(encoding="utf-8")
+    svg = re.sub(r">\s+<", "><", svg.strip())
+    return "data:image/svg+xml;base64," + base64.b64encode(svg.encode()).decode()
+
+
+def stack(t, theme):
+    m, gap, pad = 48, 20, 28
+    full = W - m * 2
+    half = (full - gap) / 2
+    third = (full - gap * 2) / 3
+    icon, icon_gap = 48, 12
+    card_h = 64 + icon + pad
+    body, order = [], 0
+
+    def label(x, y, w, name, count):
+        return (
+            text(x + pad, y + 40, name.upper(), 13, t["accent"], family=MONO, extra=' letter-spacing="1.2"')
+            + text(round(x + w - pad, 1), y + 40, f"{count:02d}", 13, t["muted"], family=MONO, anchor="end")
+        )
+
+    def icon_card(x, y, w, name, ids):
+        nonlocal order
+        ids = ids.split()
+        out = [glass(t, round(x, 1), y, round(w, 1), card_h), label(x, y, w, name, len(ids))]
+        for i, n in enumerate(ids):
+            ix = x + pad + i * (icon + icon_gap)
+            out.append(
+                f'<image x="{ix:.1f}" y="{y + 64}" width="{icon}" height="{icon}" href="{skill_icon(n, theme)}" opacity="0">'
+                f'{fade_in(0.15 + order * 0.035, 0.4)}</image>'
+            )
+            order += 1
+        return "".join(out)
+
+    # Header.
+    body.append(text(m, 62, "STACK", 13, t["accent"], family=MONO, extra=' letter-spacing="1.6"'))
+    body.append(text(m, 102, "What I build with", 34, t["text"], 700, extra=' letter-spacing="-0.6"'))
+    body.append(text(W - m, 102, "Self taught, one project at a time", 16, t["muted"], anchor="end"))
+
+    y = 136
+    (lang, lang_ids, _), (fe, fe_ids, _), (infra, infra_ids, _), (be, be_ids, _) = STACK_ICONS
+    body.append(icon_card(m, y, full, lang, lang_ids))
+    y += card_h + gap
+    body.append(icon_card(m, y, half, fe, fe_ids))
+    body.append(icon_card(m + half + gap, y, half, infra, infra_ids))
+    y += card_h + gap
+    body.append(icon_card(m, y, full, be, be_ids))
+    y += card_h + gap
+
+    # Word cards: chips wrap inside the card, every card takes the tallest height.
+    chip_h, chip_pad, chip_gap = 30, 12, 8
+    inner = third - pad * 2
+    layouts = []
+    for name, words in STACK_WORDS:
+        rows, cx, cy = [], 0, 0
+        for word, strong in words:
+            w = round(chip_width(word) + chip_pad * 2)
+            if cx and cx + w > inner:
+                cx, cy = 0, cy + chip_h + chip_gap
+            rows.append((cx, cy, w, word, strong))
+            cx += w + chip_gap
+        layouts.append((name, rows, cy + chip_h))
+    words_h = 60 + max(h for _, _, h in layouts) + pad
+    for i, (name, chips, _) in enumerate(layouts):
+        x = m + i * (third + gap)
+        body.append(glass(t, round(x, 1), y, round(third, 1), words_h))
+        body.append(label(x, y, third, name, len(chips)))
+        for cx, cy, w, word, strong in chips:
+            px, py = x + pad + cx, y + 60 + cy
+            fill, fop, ink = (t["accent"], 0.16, t["text"]) if strong else (t["line"], t["line_alpha"] * 0.7, t["text"])
+            stroke = t["accent"] if strong else t["line"]
+            sop = 0.45 if strong else t["line_alpha"] * 1.6
+            body.append(
+                f'<g opacity="0">{fade_in(0.6 + order * 0.02, 0.4)}'
+                f'<rect x="{px:.1f}" y="{py}" width="{w}" height="{chip_h}" rx="9" fill="{fill}" fill-opacity="{fop:.2f}" '
+                f'stroke="{stroke}" stroke-opacity="{sop:.2f}"/>'
+                + text(round(px + w / 2, 1), py + 20, word, 14, ink, 500, anchor="middle")
+                + "</g>"
+            )
+            order += 1
+    h = y + words_h + m
+    return frame(t, h, "".join(body), seed=2)
+
+
 # --- Footer -------------------------------------------------------------------
 
 
@@ -331,6 +450,10 @@ def main():
             path = HERE / f"{name}-{theme}.svg"
             path.write_text(build(palette), encoding="utf-8")
             print(f"{path.name}  {path.stat().st_size / 1024:.0f} KB")
+    for theme, palette in THEMES.items():
+        path = HERE / f"stack-{theme}.svg"
+        path.write_text(stack(palette, theme), encoding="utf-8")
+        print(f"{path.name}  {path.stat().st_size / 1024:.0f} KB")
     (HERE / "links").mkdir(exist_ok=True)
     for label, icon, colour in LINKS:
         for theme, palette in THEMES.items():
