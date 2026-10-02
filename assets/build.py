@@ -381,7 +381,6 @@ def stack(t, theme):
     # Header.
     body.append(text(m, 62, "STACK", 13, t["accent"], family=MONO, extra=' letter-spacing="1.6"'))
     body.append(text(m, 102, "What I build with", 34, t["text"], 700, extra=' letter-spacing="-0.6"'))
-    body.append(text(W - m, 102, "Self taught, one project at a time", 16, t["muted"], anchor="end"))
 
     y = 136
     (lang, lang_ids, _), (fe, fe_ids, _), (infra, infra_ids, _), (be, be_ids, _) = STACK_ICONS
