@@ -105,11 +105,12 @@ def glass(t, x, y, w, h, r=20):
 
 
 def blobs(t, h, seed=0):
-    """Three soft accent lights drifting behind everything."""
+    """Three soft lights drifting behind everything, all in the one violet so
+    the backdrop reads as the brand rather than a rainbow."""
     spots = [
         (t["accent"], 0.10, 0.05, 220, 30),
-        (t["accent2"], 0.58, 1.05, 200, -40),
-        (t["accent3"], 0.96, 0.00, 180, 36),
+        (t["accent_deep"], 0.58, 1.05, 240, -40),
+        (t["accent"], 0.96, 0.00, 180, 36),
     ]
     out = []
     for i, (colour, fx, fy, r, drift) in enumerate(spots):
