@@ -31,8 +31,8 @@ THEMES = {
         "line": "#ffffff",
         "line_alpha": 0.08,
         "accent": "#9d86ff",
-        "accent2": "#ff7ad4",
-        "accent3": "#56dcf5",
+        "accent2": "#c9bcff",
+        "accent3": "#7b5bff",
         "accent_deep": "#3a1784",
         "blob_alpha": 0.18,
         "glass_alpha": 0.55,
@@ -46,8 +46,8 @@ THEMES = {
         "line": "#0a0a14",
         "line_alpha": 0.09,
         "accent": "#6d4aff",
-        "accent2": "#d94fb0",
-        "accent3": "#2fb8d9",
+        "accent2": "#9278ff",
+        "accent3": "#3a1784",
         "accent_deep": "#3a1784",
         "blob_alpha": 0.12,
         "glass_alpha": 0.72,
@@ -69,7 +69,7 @@ AUDIENCE = {
 
 
 def gradients(t, prefix, x1=0, x2=W):
-    """The site's three accent gradient, spread across a span of user space
+    """The violet gradient, light to deep, spread across a span of user space
     so a tspan inside a longer line still gets the whole sweep."""
     return (
         f'<linearGradient id="{prefix}" gradientUnits="userSpaceOnUse" x1="{x1}" y1="0" x2="{x2}" y2="0">'
