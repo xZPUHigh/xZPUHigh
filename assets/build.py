@@ -224,7 +224,7 @@ def hero(t):
 # colour as the site's link chips do. TikTok's is black, so it takes the text
 # colour instead.
 LINKS = [
-    ("zpu.lol", None, None),
+    ("zpu.lol", "zpu", None),
     ("Spectrum Cheat", "spectrum", None),
     ("YouTube", "youtube", "#ff0033"),
     ("Discord", "discord", "#5865f2"),
@@ -251,15 +251,15 @@ def icon_path(name):
     return re.search(r' d="([^"]+)"', svg).group(1)
 
 
-def spectrum_mark(theme, size, grid=40):
-    """The real mark from spectrumcheat.com/images/brand/, redrawn as rows of
-    coloured cells. GitHub serves every SVG with CSP default-src 'none', which
-    blocks an embedded data: image, so anything inside has to be vector. The
-    "dark" copy is the light purple one drawn for dark backgrounds."""
+def raster_mark(file, size, grid=40, pixel_art=False):
+    """A brand mark redrawn as rows of coloured cells. GitHub serves every SVG
+    with CSP default-src 'none', which blocks an embedded data: image, so
+    anything inside has to be vector. Pixel art is sampled cell by cell so its
+    blocks stay hard edged."""
     from PIL import Image
 
-    im = Image.open(HERE / "icons" / f"spectrum-mark-{theme}-512.webp").convert("RGBA")
-    im = im.resize((grid, grid), Image.LANCZOS)
+    im = Image.open(HERE / "icons" / file).convert("RGBA")
+    im = im.resize((grid, grid), Image.NEAREST if pixel_art else Image.LANCZOS)
     px = im.load()
 
     def cell(x, y):
@@ -289,11 +289,10 @@ def spectrum_mark(theme, size, grid=40):
 
 def pill(t, label, icon, colour):
     h, pad, icon_size, gap = 44, 20, 18, 9
-    has_icon = icon is not None
-    inner = label_width(label) + (icon_size + gap if has_icon else 0)
+    inner = label_width(label) + icon_size + gap
     w = round(inner + pad * 2)
     r = 14
-    primary = icon is None
+    primary = icon == "zpu"
 
     if primary:
         body = (
@@ -311,9 +310,16 @@ def pill(t, label, icon, colour):
         ink = t["text"]
 
     x = pad
-    if icon == "spectrum":
+    if icon == "zpu":
+        # zpu.lol/brand/Logo Webp/Z-White.webp, white so it reads on the solid
+        # accent fill of the primary pill in both themes.
+        body += f'<g transform="translate({x} {(h - icon_size) / 2})">{raster_mark("zpu-mark-white-512.webp", icon_size, 32, True)}</g>'
+        x += icon_size + gap
+    elif icon == "spectrum":
         theme = "dark" if t is THEMES["dark"] else "light"
-        body += f'<g transform="translate({x} {(h - icon_size) / 2})">{spectrum_mark(theme, icon_size)}</g>'
+        # spectrumcheat.com/images/brand/. Its "dark" copy is the light purple
+        # one drawn for dark backgrounds.
+        body += f'<g transform="translate({x} {(h - icon_size) / 2})">{raster_mark(f"spectrum-mark-{theme}-512.webp", icon_size)}</g>'
         x += icon_size + gap
     elif icon:
         fill = t["text"] if colour == "text" else colour
