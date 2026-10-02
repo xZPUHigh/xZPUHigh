@@ -251,6 +251,42 @@ def icon_path(name):
     return re.search(r' d="([^"]+)"', svg).group(1)
 
 
+def spectrum_mark(theme, size, grid=40):
+    """The real mark from spectrumcheat.com/images/brand/, redrawn as rows of
+    coloured cells. GitHub serves every SVG with CSP default-src 'none', which
+    blocks an embedded data: image, so anything inside has to be vector. The
+    "dark" copy is the light purple one drawn for dark backgrounds."""
+    from PIL import Image
+
+    im = Image.open(HERE / "icons" / f"spectrum-mark-{theme}-512.webp").convert("RGBA")
+    im = im.resize((grid, grid), Image.LANCZOS)
+    px = im.load()
+
+    def cell(x, y):
+        r, g, b, a = px[x, y]
+        q = lambda v: min(255, round(v / 8) * 8)
+        return (q(r), q(g), q(b), round(a / 32) * 32)
+
+    rects = []
+    for y in range(grid):
+        x = 0
+        while x < grid:
+            c = cell(x, y)
+            run = 1
+            while x + run < grid and cell(x + run, y) == c:
+                run += 1
+            if c[3]:
+                # Opaque runs overlap their neighbours a hair so no seam shows.
+                bleed = 0.06 if c[3] >= 255 else 0
+                op = "" if c[3] >= 255 else f' fill-opacity="{c[3] / 255:.2f}"'
+                rects.append(
+                    f'<rect x="{x}" y="{y}" width="{run + bleed}" height="{1 + bleed}" '
+                    f'fill="#{c[0]:02x}{c[1]:02x}{c[2]:02x}"{op}/>'
+                )
+            x += run
+    return f'<g transform="scale({size / grid})">{"".join(rects)}</g>'
+
+
 def pill(t, label, icon, colour):
     h, pad, icon_size, gap = 44, 20, 18, 9
     has_icon = icon is not None
@@ -276,14 +312,8 @@ def pill(t, label, icon, colour):
 
     x = pad
     if icon == "spectrum":
-        # The real mark from spectrumcheat.com/images/brand/. Its "dark" copy is
-        # the light purple one drawn for dark backgrounds, so names line up.
         theme = "dark" if t is THEMES["dark"] else "light"
-        mark = base64.b64encode((HERE / "icons" / f"spectrum-mark-{theme}-128.webp").read_bytes()).decode()
-        body += (
-            f'<image x="{x}" y="{(h - icon_size) / 2}" width="{icon_size}" height="{icon_size}" '
-            f'href="data:image/webp;base64,{mark}"/>'
-        )
+        body += f'<g transform="translate({x} {(h - icon_size) / 2})">{spectrum_mark(theme, icon_size)}</g>'
         x += icon_size + gap
     elif icon:
         fill = t["text"] if colour == "text" else colour
@@ -315,7 +345,7 @@ def slug(label):
 # --- Stack --------------------------------------------------------------------
 
 # Icons are skillicons.dev tiles, cached in icons/skill/ (one per theme) and
-# embedded as data URIs, since an SVG shown through <img> fetches nothing.
+# inlined, since an SVG shown through <img> fetches nothing.
 STACK_ICONS = [
     ("Languages", "ts js lua py cs cpp go rust php bash html css", True),
     ("Frontend", "react nextjs svelte tailwind", False),
@@ -345,12 +375,18 @@ except Exception:
         return len(word) * 7.4
 
 
-def skill_icon(name, theme):
+def skill_icon(name, theme, x, y, size):
+    """The tile's own SVG, inlined. An embedded data: image would be blocked
+    by the CSP GitHub serves SVGs with. Ids get the icon's name as a prefix so
+    two tiles never share a gradient or clip path."""
     import re
 
     svg = (HERE / "icons" / "skill" / f"{name}-{theme}.svg").read_text(encoding="utf-8")
     svg = re.sub(r">\s+<", "><", svg.strip())
-    return "data:image/svg+xml;base64," + base64.b64encode(svg.encode()).decode()
+    svg = re.sub(r'id="([^"]+)"', rf'id="{name}-\1"', svg)
+    svg = re.sub(r"url\(#([^)]+)\)", rf"url(#{name}-\1)", svg)
+    svg = re.sub(r'^<svg [^>]*>', f'<svg x="{x:.1f}" y="{y}" width="{size}" height="{size}" viewBox="0 0 256 256" fill="none">', svg)
+    return svg
 
 
 def stack(t, theme):
@@ -375,8 +411,7 @@ def stack(t, theme):
         for i, n in enumerate(ids):
             ix = x + pad + i * (icon + icon_gap)
             out.append(
-                f'<image x="{ix:.1f}" y="{y + 64}" width="{icon}" height="{icon}" href="{skill_icon(n, theme)}" opacity="0">'
-                f'{fade_in(0.15 + order * 0.035, 0.4)}</image>'
+                f'<g opacity="0">{fade_in(0.15 + order * 0.035, 0.4)}{skill_icon(n, theme, ix, y + 64, icon)}</g>'
             )
             order += 1
         return "".join(out)
