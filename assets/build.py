@@ -214,40 +214,94 @@ def hero(t):
 
 # --- Link pills ---------------------------------------------------------------
 
-# One image per link, since an <img> can only carry one destination. Width is
-# estimated from the label length; the label is centred, so a few pixels of
-# error only shift the padding, never clip the text.
+# One image per link, since an <img> can only carry one destination, so each
+# pill is sized to its own label. The label is measured with Segoe UI Semibold,
+# the face most viewers on Windows get from the stack; other systems land
+# within a few pixels, and the label is centred in its slot so the error only
+# shifts the padding.
+#
+# Marks are Simple Icons (CC0), kept in assets/icons, drawn in the brand's
+# colour as the site's link chips do. TikTok's is black, so it takes the text
+# colour instead.
 LINKS = [
-    ("zpu.lol", True),
-    ("Spectrum Cheat", False),
-    ("YouTube", False),
-    ("Discord", False),
-    ("Instagram", False),
-    ("TikTok", False),
+    ("zpu.lol", None, None),
+    ("Spectrum Cheat", "spectrum", None),
+    ("YouTube", "youtube", "#ff0033"),
+    ("Discord", "discord", "#5865f2"),
+    ("Instagram", "instagram", "#e4405f"),
+    ("TikTok", "tiktok", "text"),
 ]
 
+try:
+    from PIL import ImageFont
 
-def pill(t, label, primary):
-    h = 40
-    w = round(len(label) * 8.6 + 44)
+    _MEASURE = ImageFont.truetype("C:/Windows/Fonts/seguisb.ttf", 15)
+
+    def label_width(label):
+        return _MEASURE.getlength(label)
+except Exception:  # no Pillow or no Segoe: fall back to an average advance
+    def label_width(label):
+        return len(label) * 8.2
+
+
+def icon_path(name):
+    import re
+
+    svg = (HERE / "icons" / f"{name}.svg").read_text(encoding="utf-8")
+    return re.search(r' d="([^"]+)"', svg).group(1)
+
+
+def pill(t, label, icon, colour):
+    h, pad, icon_size, gap = 44, 20, 18, 9
+    has_icon = icon is not None
+    inner = label_width(label) + (icon_size + gap if has_icon else 0)
+    w = round(inner + pad * 2)
+    r = 14
+    primary = icon is None
+
     if primary:
-        fill = (
-            f'<rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="{h / 2 - 1}" fill="url(#accent)"/>'
+        body = (
+            f'<rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="{r}" fill="{t["accent"]}"/>'
+            f'<rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="{r}" fill="url(#shine)"/>'
+            f'<rect x="1.5" y="1.5" width="{w - 3}" height="{h - 3}" rx="{r - 0.5}" stroke="#ffffff" stroke-opacity="0.22"/>'
         )
-        colour, weight = "#ffffff", 700
+        ink = "#ffffff"
     else:
-        fill = (
-            f'<rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="{h / 2 - 1}" fill="{t["surface"]}" fill-opacity="{t["glass_alpha"]}"/>'
-            f'<rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="{h / 2 - 1}" fill="url(#gloss)"/>'
-            f'<rect x="1.5" y="1.5" width="{w - 3}" height="{h - 3}" rx="{h / 2 - 1.5}" stroke="url(#rim)"/>'
+        body = (
+            f'<rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="{r}" fill="{t["surface"]}"/>'
+            f'<rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="{r}" fill="url(#gloss)"/>'
+            f'<rect x="1.5" y="1.5" width="{w - 3}" height="{h - 3}" rx="{r - 0.5}" stroke="url(#rim)"/>'
         )
-        colour, weight = t["text"], 600
+        ink = t["text"]
+
+    x = pad
+    if icon == "spectrum":
+        cy = h / 2
+        body += (
+            f'<circle cx="{x + icon_size / 2}" cy="{cy}" r="{icon_size / 2 - 1}" fill="url(#accent)"/>'
+            f'<circle cx="{x + icon_size / 2}" cy="{cy}" r="{icon_size / 2 - 5.5}" fill="{t["surface"]}"/>'
+        )
+        x += icon_size + gap
+    elif icon:
+        fill = t["text"] if colour == "text" else colour
+        scale = icon_size / 24
+        body += (
+            f'<path transform="translate({x} {(h - icon_size) / 2}) scale({scale})" d="{icon_path(icon)}" fill="{fill}"/>'
+        )
+        x += icon_size + gap
+
+    body += text(f"{x + label_width(label) / 2:.1f}", 27.5, label, 15, ink, 600, anchor="middle")
+    shine = (
+        '<linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">'
+        '<stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/>'
+        '<stop offset="0.5" stop-color="#ffffff" stop-opacity="0.04"/>'
+        '<stop offset="1" stop-color="#000000" stop-opacity="0.08"/>'
+        "</linearGradient>"
+    )
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" fill="none">'
-        f"<defs>{glass_defs(t)}{gradients(t, 'accent', 0, w)}</defs>"
-        f"{fill}"
-        + text(w / 2, 25.5, label, 15, colour, weight, anchor="middle")
-        + "</svg>"
+        f"<defs>{glass_defs(t)}{gradients(t, 'accent', pad, pad + icon_size)}{shine}</defs>"
+        f"{body}</svg>"
     )
 
 
@@ -278,10 +332,10 @@ def main():
             path.write_text(build(palette), encoding="utf-8")
             print(f"{path.name}  {path.stat().st_size / 1024:.0f} KB")
     (HERE / "links").mkdir(exist_ok=True)
-    for label, primary in LINKS:
+    for label, icon, colour in LINKS:
         for theme, palette in THEMES.items():
             path = HERE / "links" / f"{slug(label)}-{theme}.svg"
-            path.write_text(pill(palette, label, primary), encoding="utf-8")
+            path.write_text(pill(palette, label, icon, colour), encoding="utf-8")
 
 
 if __name__ == "__main__":

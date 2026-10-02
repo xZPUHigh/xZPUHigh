@@ -6,6 +6,8 @@
   </picture>
 </a>
 
+<br />
+
 <p align="center">
   <a href="https://zpu.lol"><picture><source media="(prefers-color-scheme: light)" srcset="assets/links/zpu-lol-light.svg" /><img src="assets/links/zpu-lol-dark.svg" height="40" alt="zpu.lol" /></picture></a>
   <a href="https://spectrumcheat.com"><picture><source media="(prefers-color-scheme: light)" srcset="assets/links/spectrum-cheat-light.svg" /><img src="assets/links/spectrum-cheat-dark.svg" height="40" alt="Spectrum Cheat" /></picture></a>
