@@ -33,7 +33,7 @@ THEMES = {
         "accent": "#9d86ff",
         "accent2": "#ff7ad4",
         "accent3": "#56dcf5",
-        "blob_alpha": 0.42,
+        "blob_alpha": 0.18,
         "glass_alpha": 0.55,
         "dot_alpha": 0.07,
     },
@@ -47,7 +47,7 @@ THEMES = {
         "accent": "#6d4aff",
         "accent2": "#d94fb0",
         "accent3": "#2fb8d9",
-        "blob_alpha": 0.26,
+        "blob_alpha": 0.12,
         "glass_alpha": 0.72,
         "dot_alpha": 0.09,
     },
@@ -152,9 +152,9 @@ def glass(t, x, y, w, h, r=20):
 def blobs(t, h, seed=0):
     """Three soft accent lights drifting behind everything."""
     spots = [
-        (t["accent"], 0.18, 0.15, 340, 30),
-        (t["accent2"], 0.62, 0.95, 300, -40),
-        (t["accent3"], 0.92, 0.10, 260, 36),
+        (t["accent"], 0.10, 0.05, 220, 30),
+        (t["accent2"], 0.58, 1.05, 200, -40),
+        (t["accent3"], 0.96, 0.00, 180, 36),
     ]
     out = []
     for i, (colour, fx, fy, r, drift) in enumerate(spots):
@@ -229,7 +229,7 @@ def hero(t):
     fill_w = bar_w * share
     body += [
         glass(t, cx, cy, cw, ch, 24),
-        text(cx + 32, cy + 46, "THE GOAL I SET AT EIGHT", 12, t["muted"], family=MONO),
+        text(cx + 32, cy + 46, "THE GOAL I SET AT EIGHT", 14, t["muted"], family=MONO),
         f'<text x="{cx + 32}" y="{cy + 108}" font-family="{SANS}" font-weight="800" fill="{t["text"]}">'
         f'<tspan font-size="52" letter-spacing="-1.5">{sub:,}</tspan>'
         f'<tspan font-size="22" font-weight="600" fill="{t["muted"]}" dx="8">/ {goal:,}</tspan></text>',
@@ -237,7 +237,7 @@ def hero(t):
         f'<rect x="{cx + 32}" y="{cy + 158}" width="{bar_w}" height="10" rx="5" fill="{t["line"]}" fill-opacity="{t["line_alpha"] * 1.5:.2f}"/>',
         f'<rect x="{cx + 32}" y="{cy + 158}" width="{fill_w:.1f}" height="10" rx="5" fill="url(#bar)">'
         f'<animate attributeName="width" from="0" to="{fill_w:.1f}" dur="1.6s" begin="0.3s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1" keyTimes="0;1"/></rect>',
-        text(cx + 32, cy + 194, f"{share:.0%} THERE  /  {goal - sub:,} TO GO", 12, t["accent"], family=MONO),
+        text(cx + 32, cy + 194, f"{share:.0%} THERE  /  {goal - sub:,} TO GO", 14, t["accent"], family=MONO),
         f'<line x1="{cx + 32}" y1="{cy + 220}" x2="{cx + cw - 32}" y2="{cy + 220}" stroke="{t["line"]}" stroke-opacity="{t["line_alpha"] * 1.5:.2f}"/>',
     ]
     minis = [("67", "games"), ("447M+", "executions"), ("99.94%", "uptime")]
@@ -345,6 +345,49 @@ def timeline(t):
     return frame(t, h, "".join(body), defs, seed=2)
 
 
+# --- Link pills ---------------------------------------------------------------
+
+# One image per link, since an <img> can only carry one destination. Width is
+# estimated from the label length; the label is centred, so a few pixels of
+# error only shift the padding, never clip the text.
+LINKS = [
+    ("zpu.lol", True),
+    ("Spectrum Cheat", False),
+    ("YouTube", False),
+    ("Discord", False),
+    ("Instagram", False),
+    ("TikTok", False),
+]
+
+
+def pill(t, label, primary):
+    h = 40
+    w = round(len(label) * 8.6 + 44)
+    if primary:
+        fill = (
+            f'<rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="{h / 2 - 1}" fill="url(#accent)"/>'
+        )
+        colour, weight = "#ffffff", 700
+    else:
+        fill = (
+            f'<rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="{h / 2 - 1}" fill="{t["surface"]}" fill-opacity="{t["glass_alpha"]}"/>'
+            f'<rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="{h / 2 - 1}" fill="url(#gloss)"/>'
+            f'<rect x="1.5" y="1.5" width="{w - 3}" height="{h - 3}" rx="{h / 2 - 1.5}" stroke="url(#rim)"/>'
+        )
+        colour, weight = t["text"], 600
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" fill="none">'
+        f"<defs>{glass_defs(t)}{gradients(t, 'accent', 0, w)}</defs>"
+        f"{fill}"
+        + text(w / 2, 25.5, label, 15, colour, weight, anchor="middle")
+        + "</svg>"
+    )
+
+
+def slug(label):
+    return label.lower().replace(" ", "-").replace(".", "-")
+
+
 # --- Footer -------------------------------------------------------------------
 
 
@@ -367,6 +410,11 @@ def main():
             path = HERE / f"{name}-{theme}.svg"
             path.write_text(build(palette), encoding="utf-8")
             print(f"{path.name}  {path.stat().st_size / 1024:.0f} KB")
+    (HERE / "links").mkdir(exist_ok=True)
+    for label, primary in LINKS:
+        for theme, palette in THEMES.items():
+            path = HERE / "links" / f"{slug(label)}-{theme}.svg"
+            path.write_text(pill(palette, label, primary), encoding="utf-8")
 
 
 if __name__ == "__main__":
