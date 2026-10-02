@@ -11,8 +11,8 @@ figure, so this is the only place one has to change.
 
 The palette is the site's own: --bg, --surface, --muted and the three accents
 from src/app/globals.css, the light theme and the dark one. The pixel font in
-the small labels is Monocraft, embedded so it renders inside an <img>, where
-an SVG cannot load anything from outside itself.
+the small labels is Monocraft, drawn as outlines: GitHub serves SVGs with CSP
+default-src 'none', so nothing embedded or linked (fonts, images) loads.
 """
 
 import base64
@@ -33,7 +33,7 @@ THEMES = {
         "accent": "#9d86ff",
         "accent2": "#ff7ad4",
         "accent3": "#56dcf5",
-        "accent_deep": "#4a2fc9",
+        "accent_deep": "#3a1784",
         "blob_alpha": 0.18,
         "glass_alpha": 0.55,
         "dot_alpha": 0.07,
@@ -48,7 +48,7 @@ THEMES = {
         "accent": "#6d4aff",
         "accent2": "#d94fb0",
         "accent3": "#2fb8d9",
-        "accent_deep": "#4a2fc9",
+        "accent_deep": "#3a1784",
         "blob_alpha": 0.12,
         "glass_alpha": 0.72,
         "dot_alpha": 0.09,
@@ -66,14 +66,6 @@ AUDIENCE = {
 }
 
 # --- Shared pieces ------------------------------------------------------------
-
-
-def font_face():
-    data = base64.b64encode((HERE / "fonts" / "Monocraft.woff2").read_bytes()).decode()
-    return (
-        "<style>@font-face{font-family:Monocraft;"
-        f"src:url(data:font/woff2;base64,{data}) format('woff2');}}</style>"
-    )
 
 
 def gradients(t, prefix, x1=0, x2=W):
@@ -135,7 +127,6 @@ def frame(t, h, body, defs="", with_blobs=True, seed=0):
     lines = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{h}" viewBox="0 0 {W} {h}" fill="none">',
         "<defs>",
-        font_face(),
         f'<clipPath id="card"><rect width="{W}" height="{h}" rx="28"/></clipPath>',
         '<filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="70"/></filter>',
         '<pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">'
@@ -155,7 +146,40 @@ def frame(t, h, body, defs="", with_blobs=True, seed=0):
     return "".join(lines)
 
 
+_MONO_FONT = None
+
+
+def mono_path(x, y, s, size, fill, anchor="start", spacing=0.0):
+    """Monocraft text as one vector path. GitHub serves SVGs with CSP
+    default-src 'none', which blocks an embedded @font-face, so the pixel font
+    only shows up drawn as outlines."""
+    global _MONO_FONT
+    from fontTools.pens.svgPathPen import SVGPathPen
+    from fontTools.pens.transformPen import TransformPen
+    from fontTools.ttLib import TTFont
+
+    if _MONO_FONT is None:
+        _MONO_FONT = TTFont(HERE / "fonts" / "Monocraft.woff2")
+    font = _MONO_FONT
+    cmap, glyphs, hmtx = font.getBestCmap(), font.getGlyphSet(), font["hmtx"]
+    k = size / font["head"].unitsPerEm
+
+    names = [cmap.get(ord(c), ".notdef") for c in s]
+    width = sum(hmtx[n][0] * k for n in names) + spacing * (len(names) - 1)
+    pen = SVGPathPen(glyphs)
+    cx = x - (width if anchor == "end" else width / 2 if anchor == "middle" else 0)
+    for n in names:
+        glyphs[n].draw(TransformPen(pen, (k, 0, 0, -k, cx, y)))
+        cx += hmtx[n][0] * k + spacing
+    return f'<path d="{pen.getCommands()}" fill="{fill}"/>'
+
+
 def text(x, y, s, size, fill, weight=400, family=SANS, anchor="start", extra=""):
+    if family == MONO:
+        import re
+
+        m = re.search(r'letter-spacing="([\d.]+)"', extra)
+        return mono_path(x, y, s, size, fill, anchor, float(m.group(1)) if m else 0.0)
     return (
         f'<text x="{x}" y="{y}" font-family="{family}" font-size="{size}" font-weight="{weight}" '
         f'fill="{fill}" text-anchor="{anchor}"{extra}>{escape(s)}</text>'
