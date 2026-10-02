@@ -63,45 +63,6 @@ AUDIENCE = {
     "goal": 100_000,
 }
 
-# Three rows of four, the way the about page prints them: the channel, the
-# community, the work. The last column of each row is a clock.
-STATS = [
-    ("CHANNEL", "since 2017", [
-        ("8M+", "Total views"),
-        ("80K+", "YouTube subscribers"),
-        ("793+", "Videos uploaded"),
-        ("9+", "Years on YouTube"),
-    ]),
-    ("COMMUNITY", "since 2021", [
-        ("110K+", "Community members"),
-        ("447M+", "Total executions"),
-        ("240K+", "Total sales"),
-        ("5+", "Years of community"),
-    ]),
-    ("WORK", "since 2019", [
-        ("$891K+", "Total volume"),
-        ("73K+", "Customers"),
-        ("24+", "Projects shipped"),
-        ("5+", "Years coding"),
-    ]),
-]
-
-# The years that turned the story get a bigger node, as on the site.
-MAJOR = {"2017", "2021", "2024", "2025"}
-
-TIMELINE = [
-    ("2017", "The first upload"),
-    ("2018", "First real money"),
-    ("2019", "The first shop"),
-    ("2020", "Working during the pandemic"),
-    ("2021", "First code, first community"),
-    ("2022", "Paid for the first time"),
-    ("2023", "The mystery box business"),
-    ("2024", "Spectrum"),
-    ("2025", "The year I felt low"),
-    ("2026", "Where things stand"),
-]
-
 # --- Shared pieces ------------------------------------------------------------
 
 
@@ -251,100 +212,6 @@ def hero(t):
     return frame(t, h, "".join(body), defs)
 
 
-# --- Stats --------------------------------------------------------------------
-
-
-def stats(t):
-    pad, label_w, gap = 56, 172, 16
-    tile_w = (W - pad * 2 - label_w - gap * 3) / 4
-    tile_h = 112
-    h = pad * 2 + tile_h * 3 + gap * 2
-
-    body = []
-    for r, (name, since, tiles) in enumerate(STATS):
-        y = pad + r * (tile_h + gap)
-        body.append(text(pad, y + 50, name, 14, t["text"], family=MONO))
-        body.append(text(pad, y + 74, since, 14, t["muted"]))
-        for c, (value, label) in enumerate(tiles):
-            x = pad + label_w + c * (tile_w + gap)
-            clock = c == 3
-            delay = 0.1 + (r * 4 + c) * 0.06
-            body.append(
-                f'<g opacity="0">{fade_in(delay)}'
-                + glass(t, round(x, 1), y, round(tile_w, 1), tile_h, 18)
-                + text(f"{x + 24:.1f}", y + 58, value, 38, "url(#accent)" if clock else t["text"], 800,
-                       extra=' letter-spacing="-1"')
-                + text(f"{x + 24:.1f}", y + 86, label, 15, t["muted"])
-                + "</g>"
-            )
-
-    defs = gradients(t, "accent", pad + label_w + 3 * (tile_w + gap), W - pad)
-    return frame(t, int(h), "".join(body), defs, seed=1)
-
-
-# --- Timeline -----------------------------------------------------------------
-
-
-def wrap(s, width=16):
-    lines, line = [], ""
-    for word in s.split():
-        if line and len(line) + 1 + len(word) > width:
-            lines.append(line)
-            line = word
-        else:
-            line = f"{line} {word}".strip()
-    lines.append(line)
-    return lines
-
-
-def timeline(t):
-    h = 360
-    pad = 88
-    axis = h / 2
-    step = (W - pad * 2) / (len(TIMELINE) - 1)
-
-    body = [
-        f'<line x1="{pad}" y1="{axis}" x2="{W - pad}" y2="{axis}" stroke="{t["line"]}" stroke-opacity="{t["line_alpha"] * 1.5:.2f}" stroke-width="2"/>',
-        f'<line x1="{pad}" y1="{axis}" x2="{W - pad}" y2="{axis}" stroke="url(#accent)" stroke-width="2" '
-        f'stroke-dasharray="{W - pad * 2}" stroke-dashoffset="{W - pad * 2}">'
-        f'<animate attributeName="stroke-dashoffset" from="{W - pad * 2}" to="0" dur="2.2s" begin="0.2s" fill="freeze"/></line>',
-    ]
-
-    for i, (year, title) in enumerate(TIMELINE):
-        x = pad + step * i
-        major = year in MAJOR
-        above = i % 2 == 1
-        delay = 0.2 + i * 0.2
-        lines = wrap(title)
-        size = 16 if major else 14
-        colour = t["text"] if major else t["muted"]
-        weight = 700 if major else 500
-        leading = size + 5
-
-        g = [f'<g opacity="0">{fade_in(delay, 0.5)}']
-        if major:
-            g.append(f'<circle cx="{x:.1f}" cy="{axis}" r="13" fill="{t["accent"]}" fill-opacity="0.18"/>')
-            g.append(f'<circle cx="{x:.1f}" cy="{axis}" r="7" fill="{t["accent"]}"/>')
-        else:
-            g.append(f'<circle cx="{x:.1f}" cy="{axis}" r="5" fill="{t["bg"]}" stroke="{t["muted"]}" stroke-width="2"/>')
-
-        year_fill = t["accent"] if major else t["muted"]
-        if above:
-            g.append(text(f"{x:.1f}", axis - 32, year, 14, year_fill, family=MONO, anchor="middle"))
-            top = axis - 58 - leading * (len(lines) - 1)
-            for j, line in enumerate(lines):
-                g.append(text(f"{x:.1f}", f"{top + j * leading:.1f}", line, size, colour, weight, anchor="middle"))
-        else:
-            g.append(text(f"{x:.1f}", axis + 44, year, 14, year_fill, family=MONO, anchor="middle"))
-            for j, line in enumerate(lines):
-                g.append(text(f"{x:.1f}", f"{axis + 72 + j * leading:.1f}", line, size, colour, weight, anchor="middle"))
-        g.append("</g>")
-        body.append("".join(g))
-
-    defs = gradients(t, "accent", pad, W - pad)
-    return frame(t, h, "".join(body), defs, seed=2)
-
-
 # --- Link pills ---------------------------------------------------------------
 
 # One image per link, since an <img> can only carry one destination. Width is
@@ -404,7 +271,7 @@ def footer(t):
 
 
 def main():
-    builds = {"hero": hero, "stats": stats, "timeline": timeline, "footer": footer}
+    builds = {"hero": hero, "footer": footer}
     for name, build in builds.items():
         for theme, palette in THEMES.items():
             path = HERE / f"{name}-{theme}.svg"
