@@ -33,6 +33,7 @@ THEMES = {
         "accent": "#9d86ff",
         "accent2": "#ff7ad4",
         "accent3": "#56dcf5",
+        "accent_deep": "#4a2fc9",
         "blob_alpha": 0.18,
         "glass_alpha": 0.55,
         "dot_alpha": 0.07,
@@ -47,6 +48,7 @@ THEMES = {
         "accent": "#6d4aff",
         "accent2": "#d94fb0",
         "accent3": "#2fb8d9",
+        "accent_deep": "#4a2fc9",
         "blob_alpha": 0.12,
         "glass_alpha": 0.72,
         "dot_alpha": 0.09,
@@ -295,7 +297,7 @@ def pill(t, label, icon, colour):
 
     if primary:
         body = (
-            f'<rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="{r}" fill="{t["accent"]}"/>'
+            f'<rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="{r}" fill="{t["accent_deep"]}"/>'
             f'<rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="{r}" fill="url(#shine)"/>'
             f'<rect x="1.5" y="1.5" width="{w - 3}" height="{h - 3}" rx="{r - 0.5}" stroke="#ffffff" stroke-opacity="0.22"/>'
         )
