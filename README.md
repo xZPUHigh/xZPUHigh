@@ -9,12 +9,12 @@
 <br />
 
 <p align="center">
-  <a href="https://zpu.lol"><picture><source media="(prefers-color-scheme: light)" srcset="assets/links/zpu-lol-light.svg" /><img src="assets/links/zpu-lol-dark.svg" height="40" alt="zpu.lol" /></picture></a>
-  <a href="https://spectrumcheat.com"><picture><source media="(prefers-color-scheme: light)" srcset="assets/links/spectrum-cheat-light.svg" /><img src="assets/links/spectrum-cheat-dark.svg" height="40" alt="Spectrum Cheat" /></picture></a>
-  <a href="https://www.youtube.com/@xZPUHigh"><picture><source media="(prefers-color-scheme: light)" srcset="assets/links/youtube-light.svg" /><img src="assets/links/youtube-dark.svg" height="40" alt="YouTube" /></picture></a>
-  <a href="https://discord.gg/C3MpUNwsDU"><picture><source media="(prefers-color-scheme: light)" srcset="assets/links/discord-light.svg" /><img src="assets/links/discord-dark.svg" height="40" alt="Discord" /></picture></a>
-  <a href="https://www.instagram.com/zpu.mnn2"><picture><source media="(prefers-color-scheme: light)" srcset="assets/links/instagram-light.svg" /><img src="assets/links/instagram-dark.svg" height="40" alt="Instagram" /></picture></a>
-  <a href="https://www.tiktok.com/@xzpuhigh"><picture><source media="(prefers-color-scheme: light)" srcset="assets/links/tiktok-light.svg" /><img src="assets/links/tiktok-dark.svg" height="40" alt="TikTok" /></picture></a>
+  <a href="https://zpu.lol"><picture><source media="(prefers-color-scheme: light)" srcset="assets/links/zpu-lol-light.svg" /><img src="assets/links/zpu-lol-dark.svg" height="44" alt="zpu.lol" /></picture></a>
+  <a href="https://spectrumcheat.com"><picture><source media="(prefers-color-scheme: light)" srcset="assets/links/spectrum-cheat-light.svg" /><img src="assets/links/spectrum-cheat-dark.svg" height="44" alt="Spectrum Cheat" /></picture></a>
+  <a href="https://www.youtube.com/@xZPUHigh"><picture><source media="(prefers-color-scheme: light)" srcset="assets/links/youtube-light.svg" /><img src="assets/links/youtube-dark.svg" height="44" alt="YouTube" /></picture></a>
+  <a href="https://discord.gg/C3MpUNwsDU"><picture><source media="(prefers-color-scheme: light)" srcset="assets/links/discord-light.svg" /><img src="assets/links/discord-dark.svg" height="44" alt="Discord" /></picture></a>
+  <a href="https://www.instagram.com/zpu.mnn2"><picture><source media="(prefers-color-scheme: light)" srcset="assets/links/instagram-light.svg" /><img src="assets/links/instagram-dark.svg" height="44" alt="Instagram" /></picture></a>
+  <a href="https://www.tiktok.com/@xzpuhigh"><picture><source media="(prefers-color-scheme: light)" srcset="assets/links/tiktok-light.svg" /><img src="assets/links/tiktok-dark.svg" height="44" alt="TikTok" /></picture></a>
 </p>
 
 <br />
