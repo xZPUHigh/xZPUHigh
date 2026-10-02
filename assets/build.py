@@ -276,10 +276,13 @@ def pill(t, label, icon, colour):
 
     x = pad
     if icon == "spectrum":
-        cy = h / 2
+        # The real mark from spectrumcheat.com/images/brand/. Its "dark" copy is
+        # the light purple one drawn for dark backgrounds, so names line up.
+        theme = "dark" if t is THEMES["dark"] else "light"
+        mark = base64.b64encode((HERE / "icons" / f"spectrum-mark-{theme}-128.webp").read_bytes()).decode()
         body += (
-            f'<circle cx="{x + icon_size / 2}" cy="{cy}" r="{icon_size / 2 - 1}" fill="url(#accent)"/>'
-            f'<circle cx="{x + icon_size / 2}" cy="{cy}" r="{icon_size / 2 - 5.5}" fill="{t["surface"]}"/>'
+            f'<image x="{x}" y="{(h - icon_size) / 2}" width="{icon_size}" height="{icon_size}" '
+            f'href="data:image/webp;base64,{mark}"/>'
         )
         x += icon_size + gap
     elif icon:
