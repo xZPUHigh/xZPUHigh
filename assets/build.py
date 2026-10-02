@@ -251,15 +251,14 @@ def icon_path(name):
     return re.search(r' d="([^"]+)"', svg).group(1)
 
 
-def raster_mark(file, size, grid=40, pixel_art=False):
+def raster_mark(file, size, grid=40):
     """A brand mark redrawn as rows of coloured cells. GitHub serves every SVG
     with CSP default-src 'none', which blocks an embedded data: image, so
-    anything inside has to be vector. Pixel art is sampled cell by cell so its
-    blocks stay hard edged."""
+    anything inside has to be vector."""
     from PIL import Image
 
     im = Image.open(HERE / "icons" / file).convert("RGBA")
-    im = im.resize((grid, grid), Image.NEAREST if pixel_art else Image.LANCZOS)
+    im = im.resize((grid, grid), Image.LANCZOS)
     px = im.load()
 
     def cell(x, y):
@@ -313,7 +312,7 @@ def pill(t, label, icon, colour):
     if icon == "zpu":
         # zpu.lol/brand/Logo Webp/Z-White.webp, white so it reads on the solid
         # accent fill of the primary pill in both themes.
-        body += f'<g transform="translate({x} {(h - icon_size) / 2})">{raster_mark("zpu-mark-white-512.webp", icon_size, 32, True)}</g>'
+        body += f'<g transform="translate({x} {(h - icon_size) / 2})">{raster_mark("zpu-mark-white-512.webp", icon_size, 48)}</g>'
         x += icon_size + gap
     elif icon == "spectrum":
         theme = "dark" if t is THEMES["dark"] else "light"
